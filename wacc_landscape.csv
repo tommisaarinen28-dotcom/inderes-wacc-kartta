@@ -1,0 +1,172 @@
+company,slug,wacc,mcap_meur,currency,sector,industry,gics,region,business_risk,valuation_risk,risk_level,recommendation,est_date
+Aallon Group,Aallon-Group,0.091,35.32,EUR,Technology,IT Services,Commercial & Professional Services,FIN,3,2,0,4,2026-09-21
+Admicom,Admicom,0.0864,129.39,EUR,Technology,Software,Software & Services,FIN,3,2,0,5,2026-07-08
+Administer,Administer,0.0964,37.06,EUR,Technology,IT Services,Commercial & Professional Services,FIN,3,3,0,2,2026-08-13
+Aiforia Technologies,Aiforia-Technologies,0.1347,34.8,EUR,Health Care,Medical Equipment & Services,Software & Services,FIN,5,3,0,2,2026-08-31
+Aktia,Aktia-Pankki,0.095,980.39,EUR,Financials,Banks,Banks,FIN,2,3,0,4,2026-08-03
+Alexandria Group,Alexandria-Group,0.1099,143.36,EUR,Financials,Financial Services,Financial Services,FIN,3,3,0,2,2026-08-19
+Alisa Pankki,Alisa-Pankki,0.1153,20.4,EUR,Financials,Banks,Banks,FIN,4,4,0,2,2026-09-11
+Alma Media,Alma-Media,0.0768,1132.77,EUR,Consumer Goods & Services,Media & Entertainment,Media & Entertainment,FIN,2,3,0,5,2026-08-12
+Anora Group,Anora-Group,0.0803,267.51,EUR,Consumer Goods & Services,Food & Beverage,"Food, Beverage & Tobacco",FIN,2,3,0,2,2026-08-17
+Apetit,Apetit,0.0798,79.6,EUR,Consumer Goods & Services,Food & Beverage,"Food, Beverage & Tobacco",FIN,3,3,0,1,2026-08-23
+Arvo Sijoitusosuuskunta,Arvo-Sijoitusosuuskunta,0.0934,66.0,EUR,Financials,Investment,Financial Services,FIN,2,2,0,4,2026-08-21
+Aspo,Aspo,0.0897,224.97,EUR,Industrials,Conglomerates,Transportation,FIN,4,3,0,4,2026-08-03
+Aspocomp,Aspocomp-Group,0.0997,42.46,EUR,Technology,Telecommunications,Technology Hardware & Equipment,FIN,4,3,0,2,2026-07-30
+Asuntosalkku,Asuntosalkku,0.064,75.17,EUR,Real Estate,Real Estate Management & Development,Real Estate Management & Development,FIN,2,2,0,4,2026-08-21
+Atria,Atria,0.08,460.12,EUR,Consumer Goods & Services,Food & Beverage,"Food, Beverage & Tobacco",FIN,2,3,0,4,2026-07-22
+Auroora Yhtiöt,Auroora-Group,0.0846,352.82,EUR,Industrials,Conglomerates,Capital Goods,FIN,3,4,0,4,2026-08-21
+Betolar,Betolar,0.1487,21.31,EUR,Industrials,Industrial Goods & Services,Materials,FIN,5,5,0,1,2026-08-13
+Biohit,Biohit,0.1004,35.58,EUR,Health Care,Medical Equipment & Services,Health Care Equipment & Services,FIN,3,2,0,4,2026-08-05
+Bioretec Oy,Bioretec,0.1295,37.3,EUR,Health Care,Medical Equipment & Services,Health Care Equipment & Services,FIN,5,3,0,2,2026-08-13
+Bittium,Bittium,0.082,1354.9,EUR,Technology,Telecommunications,Capital Goods,FIN,3,5,0,2,2026-08-09
+Björn Borg,Bjorn-Borg,0.0954,122.15,SEK,Consumer Goods & Services,Personal Goods,Consumer Durables & Apparel,SWE,3,3,0,4,2026-08-16
+Boreo,Boreo,0.087,72.94,EUR,Industrials,Electrical Equipment,Capital Goods,FIN,4,3,0,4,2026-09-24
+Canatu,Canatu,0.107,202.64,EUR,Technology,Hardware Manufacturer,Semiconductors & Semiconductor Equipment,FIN,4,4,0,4,2026-08-25
+CapMan,CapMan,0.0919,313.65,EUR,Financials,Investment,Financial Services,FIN,3,2,0,5,2026-08-06
+Componenta,Componenta,0.0978,73.92,EUR,Industrials,Industrial Goods & Services,Capital Goods,FIN,3,3,0,4,2026-07-24
+Consti,Consti,0.0984,90.63,EUR,Industrials,Construction & Materials,Capital Goods,FIN,2,3,0,4,2026-07-20
+Detection Technology,Detection-Technology,0.1043,108.74,EUR,Health Care,Medical Equipment & Services,Technology Hardware & Equipment,FIN,3,2,0,5,2026-08-06
+Digia,Digia,0.087,140.56,EUR,Technology,IT Services,Software & Services,FIN,2,2,0,4,2026-08-06
+Digital Workforce,Digital-Workforce,0.1026,29.63,EUR,Technology,IT Services,Software & Services,FIN,3,3,0,5,2026-07-19
+Duell,Duell,0.1137,11.22,EUR,Consumer Goods & Services,Retailers,Consumer Discretionary Distribution & Retail,FIN,4,2,0,2,2026-07-02
+Easor,Easor,0.1025,21.66,EUR,Technology,Software,Software & Services,FIN,3,3,0,5,2026-08-20
+EcoUp,EcoUp,0.1072,12.31,EUR,Industrials,Industrial Goods & Services,Materials,FIN,4,3,0,2,2026-08-20
+Eezy,Eezy,0.104,26.42,EUR,Industrials,Industrial Goods & Services,Commercial & Professional Services,FIN,5,3,0,2,2026-08-13
+Elisa,Elisa,0.0657,6214.82,EUR,Technology,Telecommunications,Telecommunication Services,FIN,1,2,0,4,2026-07-15
+Eltel,Eltel,0.0835,2816.49,EUR,Technology,Telecommunications,Capital Goods,SWE,3,3,0,2,2026-09-09
+Endomines,Endomines-Finland,0.0982,394.19,EUR,Basic Materials,Metals & Mining,Materials,FIN,5,5,0,2,2026-08-13
+Enento,Enento-Group,0.0836,361.44,EUR,Technology,Software,Software & Services,FIN,2,2,0,4,2026-07-19
+Enersense,Enersense-International,0.1041,86.42,EUR,Industrials,Industrial Goods & Services,Capital Goods,FIN,4,3,0,5,2026-08-14
+eQ,eQ,0.0948,364.38,EUR,Financials,Financial Services,Financial Services,FIN,3,3,0,2,2026-08-04
+Etteplan,Etteplan,0.0934,205.85,EUR,Industrials,Industrial Goods & Services,Commercial & Professional Services,FIN,3,2,0,2,2026-09-03
+Evli,Evli,0.0896,648.88,EUR,Financials,Financial Services,Financial Services,FIN,2,3,0,4,2026-07-14
+Exel Composites,Exel-Composites,0.0895,123.87,EUR,Industrials,Construction & Materials,Materials,FIN,3,4,0,4,2026-09-24
+F-Secure,F-Secure,0.0907,335.45,EUR,Technology,IT Services,Software & Services,FIN,3,2,0,4,2026-07-19
+Faron Pharmaceuticals,Faron-Pharmaceuticals,0.1201,96.62,EUR,Health Care,Biotechnology & Pharmaceuticals,"Pharmaceuticals, Biotechnology & Life Sciences",FIN,5,3,0,5,2026-08-26
+Fasadgruppen,Fasadgruppen,0.0978,131.13,SEK,Industrials,Industrial Goods & Services,Capital Goods,SWE,3,3,0,5,2026-08-20
+Finnair,Finnair,0.0808,972.73,EUR,Industrials,Transport & Logistics,Transportation,FIN,4,4,0,1,2026-07-22
+Fiskars,Fiskars,0.0849,1085.4,EUR,Consumer Goods & Services,Home Products,Consumer Discretionary Distribution & Retail,FIN,2,3,0,2,2026-07-16
+Foamit,Foamit,0.1085,32.1,EUR,Financials,Investment,Materials,FIN,3,4,0,2,2026-08-26
+Fodelia,Fodelia,0.0838,36.92,EUR,Consumer Goods & Services,Food & Beverage,"Food, Beverage & Tobacco",FIN,3,2,0,4,2026-08-06
+Fondia,Fondia,0.0999,18.98,EUR,Consumer Goods & Services,Consumer Services,Commercial & Professional Services,FIN,3,2,0,5,2026-08-20
+Fortum,Fortum,0.0699,21292.09,EUR,Energy,Multi,Utilities,FIN,2,3,0,2,2026-07-21
+Framery Group,Framery-Group,0.0816,534.18,EUR,Real Estate,Real Estate Management & Development,Commercial & Professional Services,FIN,3,2,0,4,2026-07-28
+Glaston,Glaston,0.1026,42.57,EUR,Industrials,Industrial Goods & Services,Capital Goods,FIN,4,3,0,4,2026-08-13
+Gofore,Gofore,0.0987,181.26,EUR,Technology,IT Services,Software & Services,FIN,2,2,0,5,2026-09-14
+GRK,GRK-Infra,0.0899,1150.43,EUR,Industrials,Construction & Materials,Capital Goods,FIN,3,3,0,4,2026-07-28
+H&M,HandM,0.0849,22987.04,SEK,Consumer Goods & Services,Personal Goods,Consumer Discretionary Distribution & Retail,SWE,2,3,0,1,2026-09-24
+Harvia,Harvia,0.0884,826.29,EUR,Consumer Goods & Services,Home Products,Consumer Discretionary Distribution & Retail,FIN,2,3,0,4,2026-08-06
+Herantis Pharma,Herantis-Pharma,0.1196,35.89,EUR,Health Care,Biotechnology & Pharmaceuticals,"Pharmaceuticals, Biotechnology & Life Sciences",FIN,5,3,0,4,2026-08-20
+HKFoods Oyj,HKFoods,0.0862,151.59,EUR,Consumer Goods & Services,Food & Beverage,"Food, Beverage & Tobacco",FIN,3,3,0,4,2026-08-06
+Homemaid,HomeMaid,0.091,49.64,SEK,Consumer Goods & Services,Consumer Services,Consumer Services,SWE,3,2,0,5,2026-08-24
+Honkarakenne,Honkarakenne,0.1113,14.91,EUR,Real Estate,Real Estate Management & Development,Capital Goods,FIN,3,4,0,2,2026-08-26
+Huhtamaki,Huhtamaki,0.0769,3271.61,EUR,Basic Materials,Paper & Forest Products,Materials,FIN,2,2,0,5,2026-07-23
+Ilkka,Ilkka,0.1007,100.68,EUR,Consumer Goods & Services,Media & Entertainment,Media & Entertainment,FIN,3,2,0,2,2026-08-31
+Incap,Incap,0.103,241.06,EUR,Industrials,Electrical Equipment,Technology Hardware & Equipment,FIN,4,3,0,4,2026-09-14
+Investors House,Investors-House,0.0732,18.53,EUR,Real Estate,Real Estate Management & Development,Real Estate Management & Development,FIN,3,4,0,2,2026-08-21
+Kalmar,Kalmar,0.0897,2575.54,EUR,Industrials,Transport & Logistics,Capital Goods,FIN,3,3,0,4,2026-07-23
+Kamux,Kamux,0.0961,60.11,EUR,Consumer Goods & Services,Automobiles,Automobiles & Components,FIN,4,4,0,2,2026-08-12
+Kemira,Kemira,0.0866,2537.68,EUR,Basic Materials,Chemicals,Materials,FIN,3,3,0,2,2026-07-18
+Kempower,Kempower,0.0932,535.99,EUR,Industrials,Electrical Equipment,Technology Hardware & Equipment,FIN,3,5,0,2,2026-07-24
+Keskisuomalainen,Keskisuomalainen,0.0875,97.09,EUR,Consumer Goods & Services,Media & Entertainment,Media & Entertainment,FIN,3,3,0,2,2026-08-28
+Kesko,Kesko,0.0742,9241.83,EUR,Consumer Goods & Services,Retailers,Consumer Staples Distribution & Retail,FIN,1,2,0,4,2026-07-23
+Kesla,Kesla,0.1006,13.9,EUR,Industrials,Industrial Goods & Services,Capital Goods,FIN,4,4,0,2,2026-08-23
+KH Group Oyj,KH-Group,0.0914,54.01,EUR,Industrials,Conglomerates,Capital Goods,FIN,4,3,0,4,2026-08-17
+Kone,Kone,0.0732,27549.76,EUR,Industrials,Industrial Goods & Services,Capital Goods,FIN,1,4,0,4,2026-07-22
+Koskisen,Koskisen,0.0925,201.44,EUR,Basic Materials,Paper & Forest Products,Materials,FIN,4,3,0,2,2026-08-14
+KPY,KPY,0.0898,90.47,EUR,Financials,Investment,Financial Services,FIN,,,0,4,2026-08-27
+KREATE,Kreate-Group,0.0846,332.44,EUR,Industrials,Construction & Materials,Capital Goods,FIN,3,3,0,4,2026-09-22
+Lamor,Lamor,0.1115,23.38,EUR,Industrials,Industrial Goods & Services,Commercial & Professional Services,FIN,4,4,0,2,2026-07-29
+Lapwall,LapWall,0.0965,66.67,EUR,Industrials,Construction & Materials,Capital Goods,FIN,3,3,0,4,2026-08-05
+Lassila & Tikanoja,Lassila-and-Tikanoja,0.0803,251.43,EUR,Industrials,Industrial Goods & Services,Commercial & Professional Services,FIN,1,2,0,5,2026-08-07
+LeadDesk,LeadDesk,0.1049,14.26,EUR,Technology,Software,Software & Services,FIN,4,2,0,2,2026-08-17
+Lemonsoft,Lemonsoft,0.0891,84.01,EUR,Technology,Software,Software & Services,FIN,3,2,0,5,2026-08-16
+Loihde,Loihde,0.0948,76.96,EUR,Technology,IT Services,Software & Services,FIN,3,3,0,4,2026-07-20
+Luotea,Luotea,0.0949,71.0,EUR,Industrials,Industrial Goods & Services,Commercial & Professional Services,FIN,2,3,0,4,2026-08-06
+Mandatum,Mandatum,0.0849,3140.04,EUR,Financials,Financial Services,Financial Services,FIN,3,4,0,2,2026-08-20
+Marimekko,Marimekko,0.0896,387.39,EUR,Consumer Goods & Services,Personal Goods,Consumer Durables & Apparel,FIN,2,3,0,4,2026-08-13
+Martela,Martela,0.1016,2.64,EUR,Consumer Goods & Services,Home Products,Commercial & Professional Services,FIN,5,5,0,1,2026-08-13
+Merus Power,Merus-Power,0.0935,48.98,EUR,Industrials,Electrical Equipment,Capital Goods,FIN,4,4,0,4,2026-08-21
+Metacon,Metacon,0.1547,19.67,SEK,Industrials,Industrial Goods & Services,Capital Goods,SWE,4,4,0,4,2026-09-09
+Metsa Board,Metsa-Board,0.0975,1214.43,EUR,Basic Materials,Paper & Forest Products,Materials,FIN,4,3,0,2,2026-08-06
+Metso,Metso,0.0776,14448.99,EUR,Industrials,Industrial Goods & Services,Capital Goods,FIN,2,4,0,2,2026-07-26
+Modulight,Modulight,0.1146,45.39,EUR,Health Care,Medical Equipment & Services,Health Care Equipment & Services,FIN,4,3,0,2,2026-08-23
+Multitude,Multitude,0.1115,124.73,EUR,,,Banks,,4,2,0,5,2026-08-13
+Neste,Neste,0.0819,26691.62,EUR,Energy,Non-Renewable,Energy,FIN,3,3,0,4,2026-07-26
+Netum,Netum-Group,0.1012,8.16,EUR,Technology,IT Services,Software & Services,FIN,3,3,0,1,2026-08-18
+Nexstim,Nexstim,0.0899,77.52,EUR,Health Care,Medical Equipment & Services,Health Care Equipment & Services,FIN,3,3,0,4,2026-08-16
+Nibe Industrier,Nibe-Industrier,0.0756,8111.16,SEK,Industrials,Industrial Goods & Services,Capital Goods,SWE,2,3,0,4,2026-08-24
+Nightingale Health,Nightingale-Health,0.1464,59.48,EUR,Health Care,Medical Equipment & Services,"Pharmaceuticals, Biotechnology & Life Sciences",FIN,5,3,0,4,2026-09-16
+NoHo,NoHo-Partners,0.067,161.41,EUR,Consumer Goods & Services,Consumer Services,Consumer Services,FIN,3,3,0,4,2026-08-05
+Nokia,Nokia,0.082,54045.96,EUR,Technology,Telecommunications,Technology Hardware & Equipment,SWE,3,4,0,1,2026-07-23
+Nokian Panimo,Nokian-Panimo,0.0889,25.23,EUR,Consumer Goods & Services,Food & Beverage,"Food, Beverage & Tobacco",FIN,3,4,0,2,2026-09-08
+Nokian Renkaat,Nokian-Tyres,0.0864,2239.42,EUR,Consumer Goods & Services,Automobiles,Automobiles & Components,FIN,3,4,0,1,2026-07-19
+Nordea,Nordea,0.0953,61158.51,EUR,Financials,Banks,Banks,SWE,3,3,0,2,2026-07-17
+Norrhydro Group,Norrhydro-Group,0.1264,12.97,EUR,Industrials,Industrial Goods & Services,Capital Goods,FIN,4,4,0,4,2026-07-15
+Nurminen Logistics,Nurminen-Logistics,0.1049,47.74,EUR,Industrials,Transport & Logistics,Transportation,FIN,4,3,0,2,2026-07-26
+NYAB,NYAB,0.0886,5532.83,EUR,Energy,Multi,Capital Goods,SWE,3,2,0,5,2026-08-14
+Oma Säästöpankki,Oma-Saastopankki,0.1103,560.39,EUR,Financials,Banks,Banks,FIN,4,3,0,2,2026-08-13
+Optomed,Optomed,0.1124,32.33,EUR,Health Care,Medical Equipment & Services,Health Care Equipment & Services,FIN,4,4,0,4,2026-08-16
+Oriola,Oriola,0.0953,168.65,EUR,Health Care,Medical Equipment & Services,Commercial & Professional Services,FIN,3,3,0,4,2026-07-19
+Orion,Orion,0.0796,11791.77,EUR,Health Care,Biotechnology & Pharmaceuticals,"Pharmaceuticals, Biotechnology & Life Sciences",FIN,2,3,0,4,2026-07-19
+Orthex,Orthex,0.0901,83.29,EUR,Consumer Goods & Services,Home Products,Consumer Durables & Apparel,FIN,2,2,0,4,2026-08-19
+Outokumpu,Outokumpu,0.0898,2677.28,EUR,Basic Materials,Metals & Mining,Materials,FIN,4,3,0,2,2026-07-30
+Ovaro,Ovaro-Kiinteistosijoitus,0.103,23.91,EUR,Real Estate,Real Estate Management & Development,Real Estate Management & Development,FIN,4,2,0,4,2026-08-21
+Pallas Air,Pallas-Air,0.1315,0.54,EUR,Industrials,Industrial Goods & Services,Technology Hardware & Equipment,FIN,5,4,0,1,2026-09-01
+Panostaja,Panostaja,0.0775,14.88,EUR,Financials,Investment,Financial Services,FIN,4,3,0,2,2026-08-27
+Pihlajalinna,Pihlajalinna,0.0716,250.18,EUR,Health Care,Health Care Providers,Health Care Equipment & Services,FIN,3,2,0,5,2026-07-23
+Ponsse,Ponsse,0.093,663.6,EUR,Industrials,Industrial Goods & Services,Capital Goods,FIN,3,3,0,2,2026-08-12
+Posti Group,Posti-Group,0.0806,546.75,EUR,Industrials,Transport & Logistics,Transportation,FIN,3,2,0,4,2026-08-17
+Puuilo,Puuilo,0.0818,1495.47,EUR,Consumer Goods & Services,Retailers,Consumer Discretionary Distribution & Retail,FIN,2,4,0,4,2026-09-18
+QPR Software,QPR-Software,0.102,10.4,EUR,Technology,Software,Software & Services,FIN,4,4,0,1,2026-08-16
+QT Group,Qt-Group,0.0941,869.04,EUR,Technology,Software,Software & Services,FIN,3,3,0,4,2026-08-06
+Raisio,Raisio,0.0777,364.5,EUR,Consumer Goods & Services,Food & Beverage,"Food, Beverage & Tobacco",FIN,2,2,0,2,2026-09-16
+Rapala,Rapala-VMC,0.0927,65.91,EUR,Consumer Goods & Services,Personal Goods,Consumer Durables & Apparel,FIN,3,3,0,2,2026-08-23
+Raute,Raute,0.1073,89.97,EUR,Industrials,Industrial Goods & Services,Capital Goods,FIN,4,3,0,4,2026-08-12
+Relais Group,Relais-Group,0.0777,255.2,EUR,Consumer Goods & Services,Automobiles,Automobiles & Components,FIN,3,3,0,4,2026-08-13
+Remedy,Remedy-Entertainment,0.1038,263.81,EUR,Technology,Software,Media & Entertainment,FIN,4,3,0,5,2026-08-11
+Revenio Group,Revenio-Group,0.0901,465.58,EUR,Health Care,Medical Equipment & Services,Health Care Equipment & Services,FIN,3,3,0,5,2026-09-22
+Robit,Robit,0.0938,28.59,EUR,Energy,Drilling Equipment & Services,Capital Goods,FIN,4,3,0,4,2026-08-10
+SAAB,Saab,0.0757,29555.77,SEK,Industrials,Industrial Goods & Services,Capital Goods,SWE,2,3,0,4,2026-07-20
+Sampo,Sampo,0.0692,23557.58,EUR,Financials,Financial Services,Insurance,FIN,1,3,0,5,2026-09-24
+Sanoma,Sanoma,0.0738,1622.57,EUR,Consumer Goods & Services,Media & Entertainment,Media & Entertainment,FIN,2,3,0,5,2026-07-29
+Scanfil,Scanfil,0.0824,821.27,EUR,Technology,Software,Technology Hardware & Equipment,FIN,3,3,0,4,2026-07-17
+Siili Solutions,Siili-Solutions,0.113,23.12,EUR,Technology,Software,Software & Services,FIN,3,3,0,4,2026-08-11
+Sitowise,Sitowise-Group,0.0839,88.54,EUR,Industrials,Construction & Materials,Capital Goods,FIN,3,2,0,2,2026-08-12
+Solar Foods,Solar-Foods,0.1433,149.65,EUR,Consumer Goods & Services,Food Producers,"Pharmaceuticals, Biotechnology & Life Sciences",FIN,5,4,0,4,2026-08-12
+Solteq,Solteq,0.1099,5.82,EUR,Technology,IT Services,Software & Services,FIN,5,5,0,1,2026-08-23
+Solwers,Solwers,0.0968,12.71,EUR,Industrials,Industrial Goods & Services,Commercial & Professional Services,FIN,4,3,0,2,2026-08-25
+Sotkamo Silver,Sotkamo-Silver,0.1181,147.34,SEK,Basic Materials,Metals & Mining,Materials,SWE,5,4,0,2,2026-08-03
+Spinnova,Spinnova,0.1505,25.61,EUR,Consumer Goods & Services,Personal Goods,Technology Hardware & Equipment,FIN,5,4,0,2,2026-08-31
+Spotify,Spotify,0.0853,105044.07,EUR,,,Media & Entertainment,,2,3,0,5,2026-08-05
+Springvest,Springvest,0.1503,45.28,EUR,Financials,Financial Services,Financial Services,FIN,3,4,0,4,2026-08-27
+SRV Yhtiot,SRV-Group,0.0972,163.03,EUR,Industrials,Construction & Materials,Capital Goods,FIN,4,2,0,4,2026-08-06
+SSH,SSH-Communications-Security,0.107,109.77,EUR,Technology,IT Services,Software & Services,FIN,3,4,0,2,2026-09-23
+Starbreeze,Starbreeze,0.1311,15.26,SEK,Technology,Software,Media & Entertainment,SWE,4,3,0,2,2026-08-21
+Stora Enso,Stora-Enso,0.0842,8288.4,EUR,Basic Materials,Paper & Forest Products,Materials,SWE,4,2,0,4,2026-07-24
+Sunborn International,Sunborn-International,0.0721,84.44,EUR,Consumer Goods & Services,Consumer Services,Consumer Services,FIN,4,5,0,2,2026-08-17
+Suominen,Suominen,0.0856,82.58,EUR,Consumer Goods & Services,Personal Goods,Household & Personal Products,FIN,3,4,0,2,2026-08-09
+Taaleri,Taaleri,0.1004,205.27,EUR,Financials,Financial Services,Financial Services,FIN,3,1,0,4,2026-08-12
+Talenom,Talenom,0.0809,53.86,EUR,Technology,IT Services,Commercial & Professional Services,FIN,3,3,0,5,2026-08-13
+Tamtron,Tamtron,0.0924,31.54,EUR,Industrials,Industrial Goods & Services,Capital Goods,FIN,3,3,0,2,2026-08-19
+Tekova,Tekova,0.1083,49.58,EUR,Industrials,Construction & Materials,Capital Goods,FIN,4,3,0,4,2026-07-23
+Teleste,Teleste,0.0883,65.88,EUR,Technology,Telecommunications,Technology Hardware & Equipment,FIN,3,3,0,4,2026-08-16
+Telia,Telia-Company,0.0695,16011.88,SEK,Technology,Telecommunications,Telecommunication Services,SWE,2,3,0,2,2026-07-19
+Terveystalo,Terveystalo,0.0781,965.48,EUR,Health Care,Medical Equipment & Services,Health Care Equipment & Services,FIN,2,3,0,2,2026-09-07
+Titanium,Titanium,0.115,63.04,EUR,Financials,Financial Services,Financial Services,FIN,4,3,0,2,2026-08-26
+Toivo Group,Toivo-Group,0.0843,52.26,EUR,Real Estate,Real Estate Management & Development,Real Estate Management & Development,FIN,4,3,0,4,2026-08-06
+Tokmanni,Tokmanni-Group,0.0912,410.02,EUR,Consumer Goods & Services,Retailers,Consumer Discretionary Distribution & Retail,FIN,3,2,0,2,2026-08-10
+Tulikivi,Tulikivi,0.0916,31.01,EUR,Consumer Goods & Services,Home Products,Consumer Durables & Apparel,FIN,4,4,0,1,2026-08-17
+United Bankers,United-Bankers,0.1,261.8,EUR,Financials,Financial Services,Financial Services,FIN,3,4,0,1,2026-08-05
+UPM,UPM-Kymmene,0.086,13510.03,EUR,Basic Materials,Paper & Forest Products,Materials,FIN,3,3,0,2,2026-07-24
+Vaisala,Vaisala,0.0741,2204.42,EUR,Technology,Hardware Manufacturer,Technology Hardware & Equipment,FIN,1,3,0,4,2026-07-21
+Valmet,Valmet,0.0896,5290.46,EUR,Industrials,Industrial Goods & Services,Capital Goods,FIN,4,2,0,4,2026-07-26
+Verkkokauppa.com,Verkkokauppa.com,0.0971,160.56,EUR,Consumer Goods & Services,Retailers,Consumer Discretionary Distribution & Retail,FIN,2,3,0,4,2026-07-17
+Verve,Verve-Group,0.1207,2467.44,EUR,Technology,Software,Software & Services,SWE,4,3,0,4,2026-08-28
+Viafin Services,Viafin-Service,0.091,71.12,EUR,Industrials,Industrial Goods & Services,Commercial & Professional Services,FIN,2,2,0,4,2026-08-03
+Vincit,Vincit,0.1353,16.75,EUR,Technology,Software,Software & Services,FIN,4,3,0,4,2026-07-14
+Wartsila,Wartsila,0.0782,17414.42,EUR,Industrials,Industrial Goods & Services,Capital Goods,FIN,2,4,0,4,2026-07-21
+Wetteri Oyj,Wetteri,0.0745,26.69,EUR,Consumer Goods & Services,Consumer Services,Consumer Discretionary Distribution & Retail,FIN,4,4,0,2,2026-08-21
+Witted Megacorp Oyj,Witted-Megacorp,0.1111,24.2,EUR,Technology,IT Services,Software & Services,FIN,4,2,0,5,2026-08-19
+Wulff,Wulff-Group,0.0957,30.81,EUR,Industrials,Industrial Goods & Services,Commercial & Professional Services,FIN,3,3,0,4,2026-07-17
+YIT,YIT,0.0887,1012.94,EUR,Industrials,Construction & Materials,Capital Goods,FIN,4,3,0,4,2026-09-24

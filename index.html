@@ -1,0 +1,337 @@
+<title>Tuottovaateiden kartta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #f6f6fb; --panel: #ffffff; --ink: #15152b; --ink-2: #4a4a66; --muted: #74748f;
+  --rule: #e3e3ef; --grid: #ececf4; --accent: #3f3eff; --accent-soft: #ecebff;
+  --pos: #b3261e; --neg: #1f6f43;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4; --s6:#008300; --s7:#4a3aa7; --s8:#e34948;
+  --q1:#cde2fb; --q2:#9ec5f4; --q3:#6da7ec; --q4:#3987e5; --q5:#256abf; --q6:#104281;
+  --display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #11111b; --panel: #191926; --ink: #ededf6; --ink-2: #bcbcd2; --muted: #9090aa;
+    --rule: #2b2b3d; --grid: #242434; --accent: #8f8eff; --accent-soft: #24234a;
+    --pos: #ff8a80; --neg: #6fd39a;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#008300; --s7:#9085e9; --s8:#e66767;
+    --q1:#1a2a44; --q2:#184f95; --q3:#1c5cab; --q4:#2a78d6; --q5:#5598e7; --q6:#9ec5f4;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #11111b; --panel: #191926; --ink: #ededf6; --ink-2: #bcbcd2; --muted: #9090aa;
+  --rule: #2b2b3d; --grid: #242434; --accent: #8f8eff; --accent-soft: #24234a;
+  --pos: #ff8a80; --neg: #6fd39a;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#008300; --s7:#9085e9; --s8:#e66767;
+  --q1:#1a2a44; --q2:#184f95; --q3:#1c5cab; --q4:#2a78d6; --q5:#5598e7; --q6:#9ec5f4;
+}
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--body); }
+.wrap { max-width: 1120px; margin: 0 auto; padding-inline: 20px; padding-block: 36px 64px; display: grid; gap: 28px; }
+header { display: grid; gap: 10px; }
+.eyebrow { font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+h1 { font: 800 clamp(30px, 5vw, 48px)/1.02 var(--display); font-stretch: 80%; letter-spacing: -.01em; margin: 0; text-wrap: balance; }
+.lede { max-width: 68ch; color: var(--ink-2); margin: 0; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding-block: 10px; border-bottom: 1px solid var(--rule); }
+.filters .lbl { font: 500 12px var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin-right: 4px; }
+.chip { display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--rule); background: var(--panel); color: var(--ink); border-radius: 999px; padding: 5px 11px; font: 500 13px var(--body); cursor: pointer; }
+.chip i { width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
+.chip[aria-pressed="false"] { color: var(--muted); background: transparent; }
+.chip[aria-pressed="false"] i { background: transparent; box-shadow: inset 0 0 0 1.5px var(--c); }
+.chip:focus-visible, button:focus-visible, input:focus-visible, th:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.reset { border: 0; background: none; color: var(--accent); font: 500 13px var(--body); cursor: pointer; padding: 5px 4px; }
+section { display: grid; gap: 10px; }
+h2 { font: 700 22px/1.2 var(--display); font-stretch: 88%; margin: 0; text-wrap: balance; }
+.sub { color: var(--ink-2); margin: 0; max-width: 72ch; }
+.panel { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; padding: 12px 8px 4px; }
+.chart { width: 100%; height: 440px; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 760px) { .two { grid-template-columns: 1fr; } .chart { height: 360px; } }
+.note { font-size: 13px; color: var(--muted); margin: 0; max-width: 80ch; }
+.tbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+input[type=search] { font: 14px var(--body); color: var(--ink); background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; padding: 7px 10px; min-width: 0; width: min(320px, 100%); }
+.tscroll { overflow-x: auto; border: 1px solid var(--rule); border-radius: 10px; background: var(--panel); max-height: 620px; overflow-y: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; font-variant-numeric: tabular-nums; }
+th, td { padding: 7px 10px; text-align: left; white-space: nowrap; border-bottom: 1px solid var(--rule); }
+th { position: sticky; top: 0; background: var(--panel); font: 600 12px var(--body); color: var(--ink-2); cursor: pointer; user-select: none; }
+th[aria-sort="ascending"]::after { content: " ▲"; color: var(--accent); }
+th[aria-sort="descending"]::after { content: " ▼"; color: var(--accent); }
+td.n, th.n { text-align: right; font-family: var(--mono); font-size: 13px; }
+td .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 7px; vertical-align: 1px; }
+td.up { color: var(--pos); } td.down { color: var(--neg); }
+footer { font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 14px; display: grid; gap: 4px; }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Inderes · Core-rankinglista 25.9.2026 · WACC 2026</div>
+    <h1>Mikä selittää tuottovaatimusta?</h1>
+    <p class="lede" id="lede"></p>
+  </header>
+
+  <div class="filters" role="group" aria-label="Sektorisuodatin">
+    <span class="lbl">Sektori</span>
+    <span id="chips" style="display:contents"></span>
+    <button class="reset" id="reset" type="button">Näytä kaikki</button>
+  </div>
+
+  <section>
+    <h2 id="h-size"></h2>
+    <p class="sub">Jokainen piste on yksi yhtiö. Vaaka-akseli on logaritminen: jokainen jako on kymmenkertainen markkina-arvo. Viiva on pienimmän neliösumman sovite kaikista yhtiöistä.</p>
+    <div class="panel"><div class="chart" id="c-size" role="img" aria-label="WACC markkina-arvon funktiona"></div></div>
+  </section>
+
+  <section>
+    <h2 id="h-risk"></h2>
+    <p class="sub">Inderesin riskiprofiilin pisteet (1 = matala, 5 = korkea). Vaakaviiva = ryhmän mediaani.</p>
+    <div class="two">
+      <div class="panel"><div class="chart" id="c-br" style="height:380px" role="img" aria-label="WACC liiketoimintariskin mukaan"></div></div>
+      <div class="panel"><div class="chart" id="c-vr" style="height:380px" role="img" aria-label="WACC arvostusriskin mukaan"></div></div>
+    </div>
+    <p class="note">Riskipisteet ja WACC ovat saman analyytikon arvioita, joten yhteys kertoo lähinnä siitä, kuinka johdonmukaisesti niitä asetetaan. Se ei ole riippumaton selitys tuottovaatimukselle.</p>
+  </section>
+
+  <section>
+    <h2 id="h-ind"></h2>
+    <p class="sub">Toimialat (ICB) järjestettynä mediaani-WACC:n mukaan, sulkeissa yhtiöiden määrä. Pystyviiva = toimialan mediaani. Alle kolmen yhtiön toimialoista ei kannata vetää johtopäätöksiä.</p>
+    <div class="panel"><div class="chart" id="c-ind" style="height:820px" role="img" aria-label="WACC toimialoittain"></div></div>
+  </section>
+
+  <section>
+    <h2>Koko ja sektori yhdessä</h2>
+    <p class="sub">Mediaani-WACC kokoluokan (markkina-arvo, M€) ja sektorin mukaan. Solun alarivi on yhtiöiden määrä. Taulukko näyttää aina kaikki sektorit.</p>
+    <div class="panel"><div class="chart" id="c-heat" style="height:400px" role="img" aria-label="Mediaani-WACC kokoluokittain ja sektoreittain"></div></div>
+  </section>
+
+  <section>
+    <h2>Yhtiöt</h2>
+    <p class="sub">Mallin WACC on tuottovaatimus, jonka sovite (koko + liiketoimintariski) antaa yhtiölle. Poikkeama kertoo, onko yhtiön tuottovaatimus korkeampi (+) vai matalampi (−) kuin samankokoisilla ja samanriskisillä yhtiöillä keskimäärin. Järjestä sarakkeita otsikosta.</p>
+    <div class="tbar">
+      <input type="search" id="q" placeholder="Hae yhtiötä tai toimialaa" aria-label="Hae yhtiötä tai toimialaa">
+      <span class="note" id="tcount"></span>
+    </div>
+    <div class="tscroll"><table id="tbl"><thead><tr>
+      <th data-k="c">Yhtiö</th><th data-k="i">Toimiala</th><th class="n" data-k="m">Markkina-arvo, M€</th>
+      <th class="n" data-k="w">WACC</th><th class="n" data-k="im">Toimialan mediaani</th><th class="n" data-k="br">Liiketoim.riski</th>
+      <th class="n" data-k="vr">Arvostusriski</th><th class="n" data-k="f">Mallin WACC</th><th class="n" data-k="d">Poikkeama, %-yks.</th>
+    </tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <footer>
+    <div>Lähteet: WACC = Inderes Core ranking-list (WACC 2026, 25.9.2026). Sektori, toimiala, markkina-arvo ja riskipisteet = inderes.fi GraphQL (tuorein ennustetransaktio). SEK-markkina-arvot muunnettu euroiksi EKP:n viitekurssilla.</div>
+    <div id="foot"></div>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.6.0/echarts.min.js"></script>
+<script>
+const D = {"rows": [{"c": "Aallon Group", "s": "Teknologia", "i": "IT Services", "m": 35.32, "w": 9.1, "br": 3, "vr": 2, "f": 9.7, "im": 9.75, "in": 12}, {"c": "Admicom", "s": "Teknologia", "i": "Software", "m": 129.39, "w": 8.64, "br": 3, "vr": 2, "f": 9.45, "im": 10.25, "in": 13}, {"c": "Administer", "s": "Teknologia", "i": "IT Services", "m": 37.06, "w": 9.64, "br": 3, "vr": 3, "f": 9.69, "im": 9.75, "in": 12}, {"c": "Aiforia Technologies", "s": "Terveydenhuolto", "i": "Medical Equipment & Services", "m": 34.8, "w": 13.47, "br": 5, "vr": 3, "f": 11.59, "im": 10.43, "in": 11}, {"c": "Aktia", "s": "Rahoitus", "i": "Banks", "m": 980.39, "w": 9.5, "br": 2, "vr": 3, "f": 8.11, "im": 10.28, "in": 4}, {"c": "Alexandria Group", "s": "Rahoitus", "i": "Financial Services", "m": 143.36, "w": 10.99, "br": 3, "vr": 3, "f": 9.43, "im": 10.02, "in": 10}, {"c": "Alisa Pankki", "s": "Rahoitus", "i": "Banks", "m": 20.4, "w": 11.53, "br": 4, "vr": 4, "f": 10.75, "im": 10.28, "in": 4}, {"c": "Alma Media", "s": "Kulutustavarat ja -palvelut", "i": "Media & Entertainment", "m": 1132.77, "w": 7.68, "br": 2, "vr": 3, "f": 8.08, "im": 8.53, "in": 5}, {"c": "Anora Group", "s": "Kulutustavarat ja -palvelut", "i": "Food & Beverage", "m": 267.51, "w": 8.03, "br": 2, "vr": 3, "f": 8.36, "im": 8.03, "in": 7}, {"c": "Apetit", "s": "Kulutustavarat ja -palvelut", "i": "Food & Beverage", "m": 79.6, "w": 7.98, "br": 3, "vr": 3, "f": 9.54, "im": 8.03, "in": 7}, {"c": "Arvo Sijoitusosuuskunta", "s": "Rahoitus", "i": "Investment", "m": 66.0, "w": 9.34, "br": 2, "vr": 2, "f": 8.64, "im": 9.19, "in": 5}, {"c": "Aspo", "s": "Teollisuus", "i": "Conglomerates", "m": 224.97, "w": 8.97, "br": 4, "vr": 3, "f": 10.28, "im": 8.97, "in": 3}, {"c": "Aspocomp", "s": "Teknologia", "i": "Telecommunications", "m": 42.46, "w": 9.97, "br": 4, "vr": 3, "f": 10.61, "im": 8.2, "in": 7}, {"c": "Asuntosalkku", "s": "Kiinteistöt", "i": "Real Estate Management & Development", "m": 75.17, "w": 6.4, "br": 2, "vr": 2, "f": 8.61, "im": 8.29, "in": 6}, {"c": "Atria", "s": "Kulutustavarat ja -palvelut", "i": "Food & Beverage", "m": 460.12, "w": 8.0, "br": 2, "vr": 3, "f": 8.26, "im": 8.03, "in": 7}, {"c": "Auroora Yhtiöt", "s": "Teollisuus", "i": "Conglomerates", "m": 352.82, "w": 8.46, "br": 3, "vr": 4, "f": 9.25, "im": 8.97, "in": 3}, {"c": "Betolar", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 21.31, "w": 14.87, "br": 5, "vr": 5, "f": 11.69, "im": 9.68, "in": 27}, {"c": "Biohit", "s": "Terveydenhuolto", "i": "Medical Equipment & Services", "m": 35.58, "w": 10.04, "br": 3, "vr": 2, "f": 9.7, "im": 10.43, "in": 11}, {"c": "Bioretec Oy", "s": "Terveydenhuolto", "i": "Medical Equipment & Services", "m": 37.3, "w": 12.95, "br": 5, "vr": 3, "f": 11.58, "im": 10.43, "in": 11}, {"c": "Bittium", "s": "Teknologia", "i": "Telecommunications", "m": 1354.9, "w": 8.2, "br": 3, "vr": 5, "f": 8.99, "im": 8.2, "in": 7}, {"c": "Björn Borg", "s": "Kulutustavarat ja -palvelut", "i": "Personal Goods", "m": 122.15, "w": 9.54, "br": 3, "vr": 3, "f": 9.46, "im": 9.12, "in": 6}, {"c": "Boreo", "s": "Teollisuus", "i": "Electrical Equipment", "m": 72.94, "w": 8.7, "br": 4, "vr": 3, "f": 10.5, "im": 9.34, "in": 4}, {"c": "Canatu", "s": "Teknologia", "i": "Hardware Manufacturer", "m": 202.64, "w": 10.7, "br": 4, "vr": 4, "f": 10.3, "im": 9.05, "in": 2}, {"c": "CapMan", "s": "Rahoitus", "i": "Investment", "m": 313.65, "w": 9.19, "br": 3, "vr": 2, "f": 9.27, "im": 9.19, "in": 5}, {"c": "Componenta", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 73.92, "w": 9.78, "br": 3, "vr": 3, "f": 9.56, "im": 9.68, "in": 27}, {"c": "Consti", "s": "Teollisuus", "i": "Construction & Materials", "m": 90.63, "w": 9.84, "br": 2, "vr": 3, "f": 8.58, "im": 8.99, "in": 9}, {"c": "Detection Technology", "s": "Terveydenhuolto", "i": "Medical Equipment & Services", "m": 108.74, "w": 10.43, "br": 3, "vr": 2, "f": 9.48, "im": 10.43, "in": 11}, {"c": "Digia", "s": "Teknologia", "i": "IT Services", "m": 140.56, "w": 8.7, "br": 2, "vr": 2, "f": 8.49, "im": 9.75, "in": 12}, {"c": "Digital Workforce", "s": "Teknologia", "i": "IT Services", "m": 29.63, "w": 10.26, "br": 3, "vr": 3, "f": 9.74, "im": 9.75, "in": 12}, {"c": "Duell", "s": "Kulutustavarat ja -palvelut", "i": "Retailers", "m": 11.22, "w": 11.37, "br": 4, "vr": 2, "f": 10.87, "im": 9.12, "in": 5}, {"c": "Easor", "s": "Teknologia", "i": "Software", "m": 21.66, "w": 10.25, "br": 3, "vr": 3, "f": 9.8, "im": 10.25, "in": 13}, {"c": "EcoUp", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 12.31, "w": 10.72, "br": 4, "vr": 3, "f": 10.85, "im": 9.68, "in": 27}, {"c": "Eezy", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 26.42, "w": 10.4, "br": 5, "vr": 3, "f": 11.65, "im": 9.68, "in": 27}, {"c": "Elisa", "s": "Teknologia", "i": "Telecommunications", "m": 6214.82, "w": 6.57, "br": 1, "vr": 2, "f": 6.8, "im": 8.2, "in": 7}, {"c": "Eltel", "s": "Teknologia", "i": "Telecommunications", "m": 2816.49, "w": 8.35, "br": 3, "vr": 3, "f": 8.84, "im": 8.2, "in": 7}, {"c": "Endomines", "s": "Perusteollisuus", "i": "Metals & Mining", "m": 394.19, "w": 9.82, "br": 5, "vr": 5, "f": 11.11, "im": 9.82, "in": 3}, {"c": "Enento", "s": "Teknologia", "i": "Software", "m": 361.44, "w": 8.36, "br": 2, "vr": 2, "f": 8.3, "im": 10.25, "in": 13}, {"c": "Enersense", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 86.42, "w": 10.41, "br": 4, "vr": 3, "f": 10.47, "im": 9.68, "in": 27}, {"c": "eQ", "s": "Rahoitus", "i": "Financial Services", "m": 364.38, "w": 9.48, "br": 3, "vr": 3, "f": 9.25, "im": 10.02, "in": 10}, {"c": "Etteplan", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 205.85, "w": 9.34, "br": 3, "vr": 2, "f": 9.36, "im": 9.68, "in": 27}, {"c": "Evli", "s": "Rahoitus", "i": "Financial Services", "m": 648.88, "w": 8.96, "br": 2, "vr": 3, "f": 8.19, "im": 10.02, "in": 10}, {"c": "Exel Composites", "s": "Teollisuus", "i": "Construction & Materials", "m": 123.87, "w": 8.95, "br": 3, "vr": 4, "f": 9.46, "im": 8.99, "in": 9}, {"c": "F-Secure", "s": "Teknologia", "i": "IT Services", "m": 335.45, "w": 9.07, "br": 3, "vr": 2, "f": 9.26, "im": 9.75, "in": 12}, {"c": "Faron Pharmaceuticals", "s": "Terveydenhuolto", "i": "Biotechnology & Pharmaceuticals", "m": 96.62, "w": 12.01, "br": 5, "vr": 3, "f": 11.39, "im": 11.96, "in": 3}, {"c": "Fasadgruppen", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 131.13, "w": 9.78, "br": 3, "vr": 3, "f": 9.45, "im": 9.68, "in": 27}, {"c": "Finnair", "s": "Teollisuus", "i": "Transport & Logistics", "m": 972.73, "w": 8.08, "br": 4, "vr": 4, "f": 9.99, "im": 8.52, "in": 4}, {"c": "Fiskars", "s": "Kulutustavarat ja -palvelut", "i": "Home Products", "m": 1085.4, "w": 8.49, "br": 2, "vr": 3, "f": 8.09, "im": 9.01, "in": 5}, {"c": "Foamit", "s": "Rahoitus", "i": "Investment", "m": 32.1, "w": 10.85, "br": 3, "vr": 4, "f": 9.72, "im": 9.19, "in": 5}, {"c": "Fodelia", "s": "Kulutustavarat ja -palvelut", "i": "Food & Beverage", "m": 36.92, "w": 8.38, "br": 3, "vr": 2, "f": 9.7, "im": 8.03, "in": 7}, {"c": "Fondia", "s": "Kulutustavarat ja -palvelut", "i": "Consumer Services", "m": 18.98, "w": 9.99, "br": 3, "vr": 2, "f": 9.83, "im": 7.45, "in": 5}, {"c": "Fortum", "s": "Energia", "i": "Multi", "m": 21292.09, "w": 6.99, "br": 2, "vr": 3, "f": 7.5, "im": 7.92, "in": 2}, {"c": "Framery Group", "s": "Kiinteistöt", "i": "Real Estate Management & Development", "m": 534.18, "w": 8.16, "br": 3, "vr": 2, "f": 9.17, "im": 8.29, "in": 6}, {"c": "Glaston", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 42.57, "w": 10.26, "br": 4, "vr": 3, "f": 10.61, "im": 9.68, "in": 27}, {"c": "Gofore", "s": "Teknologia", "i": "IT Services", "m": 181.26, "w": 9.87, "br": 2, "vr": 2, "f": 8.44, "im": 9.75, "in": 12}, {"c": "GRK", "s": "Teollisuus", "i": "Construction & Materials", "m": 1150.43, "w": 8.99, "br": 3, "vr": 3, "f": 9.02, "im": 8.99, "in": 9}, {"c": "H&M", "s": "Kulutustavarat ja -palvelut", "i": "Personal Goods", "m": 22987.04, "w": 8.49, "br": 2, "vr": 3, "f": 7.49, "im": 9.12, "in": 6}, {"c": "Harvia", "s": "Kulutustavarat ja -palvelut", "i": "Home Products", "m": 826.29, "w": 8.84, "br": 2, "vr": 3, "f": 8.14, "im": 9.01, "in": 5}, {"c": "Herantis Pharma", "s": "Terveydenhuolto", "i": "Biotechnology & Pharmaceuticals", "m": 35.89, "w": 11.96, "br": 5, "vr": 3, "f": 11.58, "im": 11.96, "in": 3}, {"c": "HKFoods Oyj", "s": "Kulutustavarat ja -palvelut", "i": "Food & Beverage", "m": 151.59, "w": 8.62, "br": 3, "vr": 3, "f": 9.42, "im": 8.03, "in": 7}, {"c": "Homemaid", "s": "Kulutustavarat ja -palvelut", "i": "Consumer Services", "m": 49.64, "w": 9.1, "br": 3, "vr": 2, "f": 9.64, "im": 7.45, "in": 5}, {"c": "Honkarakenne", "s": "Kiinteistöt", "i": "Real Estate Management & Development", "m": 14.91, "w": 11.13, "br": 3, "vr": 4, "f": 9.87, "im": 8.29, "in": 6}, {"c": "Huhtamaki", "s": "Perusteollisuus", "i": "Paper & Forest Products", "m": 3271.61, "w": 7.69, "br": 2, "vr": 2, "f": 7.87, "im": 8.6, "in": 5}, {"c": "Ilkka", "s": "Kulutustavarat ja -palvelut", "i": "Media & Entertainment", "m": 100.68, "w": 10.07, "br": 3, "vr": 2, "f": 9.5, "im": 8.53, "in": 5}, {"c": "Incap", "s": "Teollisuus", "i": "Electrical Equipment", "m": 241.06, "w": 10.3, "br": 4, "vr": 3, "f": 10.27, "im": 9.34, "in": 4}, {"c": "Investors House", "s": "Kiinteistöt", "i": "Real Estate Management & Development", "m": 18.53, "w": 7.32, "br": 3, "vr": 4, "f": 9.83, "im": 8.29, "in": 6}, {"c": "Kalmar", "s": "Teollisuus", "i": "Transport & Logistics", "m": 2575.54, "w": 8.97, "br": 3, "vr": 3, "f": 8.86, "im": 8.52, "in": 4}, {"c": "Kamux", "s": "Kulutustavarat ja -palvelut", "i": "Automobiles", "m": 60.11, "w": 9.61, "br": 4, "vr": 4, "f": 10.54, "im": 8.64, "in": 3}, {"c": "Kemira", "s": "Perusteollisuus", "i": "Chemicals", "m": 2537.68, "w": 8.66, "br": 3, "vr": 3, "f": 8.86, "im": 8.66, "in": 1}, {"c": "Kempower", "s": "Teollisuus", "i": "Electrical Equipment", "m": 535.99, "w": 9.32, "br": 3, "vr": 5, "f": 9.17, "im": 9.34, "in": 4}, {"c": "Keskisuomalainen", "s": "Kulutustavarat ja -palvelut", "i": "Media & Entertainment", "m": 97.09, "w": 8.75, "br": 3, "vr": 3, "f": 9.51, "im": 8.53, "in": 5}, {"c": "Kesko", "s": "Kulutustavarat ja -palvelut", "i": "Retailers", "m": 9241.83, "w": 7.42, "br": 1, "vr": 2, "f": 6.73, "im": 9.12, "in": 5}, {"c": "Kesla", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 13.9, "w": 10.06, "br": 4, "vr": 4, "f": 10.83, "im": 9.68, "in": 27}, {"c": "KH Group Oyj", "s": "Teollisuus", "i": "Conglomerates", "m": 54.01, "w": 9.14, "br": 4, "vr": 3, "f": 10.56, "im": 8.97, "in": 3}, {"c": "Kone", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 27549.76, "w": 7.32, "br": 1, "vr": 4, "f": 6.51, "im": 9.68, "in": 27}, {"c": "Koskisen", "s": "Perusteollisuus", "i": "Paper & Forest Products", "m": 201.44, "w": 9.25, "br": 4, "vr": 3, "f": 10.3, "im": 8.6, "in": 5}, {"c": "KPY", "s": "Rahoitus", "i": "Investment", "m": 90.47, "w": 8.98, "br": null, "vr": null, "f": null, "im": 9.19, "in": 5}, {"c": "KREATE", "s": "Teollisuus", "i": "Construction & Materials", "m": 332.44, "w": 8.46, "br": 3, "vr": 3, "f": 9.26, "im": 8.99, "in": 9}, {"c": "Lamor", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 23.38, "w": 11.15, "br": 4, "vr": 4, "f": 10.73, "im": 9.68, "in": 27}, {"c": "Lapwall", "s": "Teollisuus", "i": "Construction & Materials", "m": 66.67, "w": 9.65, "br": 3, "vr": 3, "f": 9.58, "im": 8.99, "in": 9}, {"c": "Lassila & Tikanoja", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 251.43, "w": 8.03, "br": 1, "vr": 2, "f": 7.43, "im": 9.68, "in": 27}, {"c": "LeadDesk", "s": "Teknologia", "i": "Software", "m": 14.26, "w": 10.49, "br": 4, "vr": 2, "f": 10.82, "im": 10.25, "in": 13}, {"c": "Lemonsoft", "s": "Teknologia", "i": "Software", "m": 84.01, "w": 8.91, "br": 3, "vr": 2, "f": 9.53, "im": 10.25, "in": 13}, {"c": "Loihde", "s": "Teknologia", "i": "IT Services", "m": 76.96, "w": 9.48, "br": 3, "vr": 3, "f": 9.55, "im": 9.75, "in": 12}, {"c": "Luotea", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 71.0, "w": 9.49, "br": 2, "vr": 3, "f": 8.62, "im": 9.68, "in": 27}, {"c": "Mandatum", "s": "Rahoitus", "i": "Financial Services", "m": 3140.04, "w": 8.49, "br": 3, "vr": 4, "f": 8.82, "im": 10.02, "in": 10}, {"c": "Marimekko", "s": "Kulutustavarat ja -palvelut", "i": "Personal Goods", "m": 387.39, "w": 8.96, "br": 2, "vr": 3, "f": 8.29, "im": 9.12, "in": 6}, {"c": "Martela", "s": "Kulutustavarat ja -palvelut", "i": "Home Products", "m": 2.64, "w": 10.16, "br": 5, "vr": 5, "f": 12.1, "im": 9.01, "in": 5}, {"c": "Merus Power", "s": "Teollisuus", "i": "Electrical Equipment", "m": 48.98, "w": 9.35, "br": 4, "vr": 4, "f": 10.58, "im": 9.34, "in": 4}, {"c": "Metacon", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 19.67, "w": 15.47, "br": 4, "vr": 4, "f": 10.76, "im": 9.68, "in": 27}, {"c": "Metsa Board", "s": "Perusteollisuus", "i": "Paper & Forest Products", "m": 1214.43, "w": 9.75, "br": 4, "vr": 3, "f": 9.95, "im": 8.6, "in": 5}, {"c": "Metso", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 14448.99, "w": 7.76, "br": 2, "vr": 4, "f": 7.58, "im": 9.68, "in": 27}, {"c": "Modulight", "s": "Terveydenhuolto", "i": "Medical Equipment & Services", "m": 45.39, "w": 11.46, "br": 4, "vr": 3, "f": 10.6, "im": 10.43, "in": 11}, {"c": "Multitude", "s": "Rahoitus", "i": "Financial Services", "m": 124.73, "w": 11.15, "br": 4, "vr": 2, "f": 10.4, "im": 10.02, "in": 10}, {"c": "Neste", "s": "Energia", "i": "Non-Renewable", "m": 26691.62, "w": 8.19, "br": 3, "vr": 3, "f": 8.4, "im": 8.19, "in": 1}, {"c": "Netum", "s": "Teknologia", "i": "IT Services", "m": 8.16, "w": 10.12, "br": 3, "vr": 3, "f": 9.99, "im": 9.75, "in": 12}, {"c": "Nexstim", "s": "Terveydenhuolto", "i": "Medical Equipment & Services", "m": 77.52, "w": 8.99, "br": 3, "vr": 3, "f": 9.55, "im": 10.43, "in": 11}, {"c": "Nibe Industrier", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 8111.16, "w": 7.56, "br": 2, "vr": 3, "f": 7.69, "im": 9.68, "in": 27}, {"c": "Nightingale Health", "s": "Terveydenhuolto", "i": "Medical Equipment & Services", "m": 59.48, "w": 14.64, "br": 5, "vr": 3, "f": 11.49, "im": 10.43, "in": 11}, {"c": "NoHo", "s": "Kulutustavarat ja -palvelut", "i": "Consumer Services", "m": 161.41, "w": 6.7, "br": 3, "vr": 3, "f": 9.41, "im": 7.45, "in": 5}, {"c": "Nokia", "s": "Teknologia", "i": "Telecommunications", "m": 54045.96, "w": 8.2, "br": 3, "vr": 4, "f": 8.26, "im": 8.2, "in": 7}, {"c": "Nokian Panimo", "s": "Kulutustavarat ja -palvelut", "i": "Food & Beverage", "m": 25.23, "w": 8.89, "br": 3, "vr": 4, "f": 9.77, "im": 8.03, "in": 7}, {"c": "Nokian Renkaat", "s": "Kulutustavarat ja -palvelut", "i": "Automobiles", "m": 2239.42, "w": 8.64, "br": 3, "vr": 4, "f": 8.89, "im": 8.64, "in": 3}, {"c": "Nordea", "s": "Rahoitus", "i": "Banks", "m": 61158.51, "w": 9.53, "br": 3, "vr": 3, "f": 8.24, "im": 10.28, "in": 4}, {"c": "Norrhydro Group", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 12.97, "w": 12.64, "br": 4, "vr": 4, "f": 10.84, "im": 9.68, "in": 27}, {"c": "Nurminen Logistics", "s": "Teollisuus", "i": "Transport & Logistics", "m": 47.74, "w": 10.49, "br": 4, "vr": 3, "f": 10.59, "im": 8.52, "in": 4}, {"c": "NYAB", "s": "Energia", "i": "Multi", "m": 5532.83, "w": 8.86, "br": 3, "vr": 2, "f": 8.71, "im": 7.92, "in": 2}, {"c": "Oma Säästöpankki", "s": "Rahoitus", "i": "Banks", "m": 560.39, "w": 11.03, "br": 4, "vr": 3, "f": 10.1, "im": 10.28, "in": 4}, {"c": "Optomed", "s": "Terveydenhuolto", "i": "Medical Equipment & Services", "m": 32.33, "w": 11.24, "br": 4, "vr": 4, "f": 10.66, "im": 10.43, "in": 11}, {"c": "Oriola", "s": "Terveydenhuolto", "i": "Medical Equipment & Services", "m": 168.65, "w": 9.53, "br": 3, "vr": 3, "f": 9.4, "im": 10.43, "in": 11}, {"c": "Orion", "s": "Terveydenhuolto", "i": "Biotechnology & Pharmaceuticals", "m": 11791.77, "w": 7.96, "br": 2, "vr": 3, "f": 7.62, "im": 11.96, "in": 3}, {"c": "Orthex", "s": "Kulutustavarat ja -palvelut", "i": "Home Products", "m": 83.29, "w": 9.01, "br": 2, "vr": 2, "f": 8.59, "im": 9.01, "in": 5}, {"c": "Outokumpu", "s": "Perusteollisuus", "i": "Metals & Mining", "m": 2677.28, "w": 8.98, "br": 4, "vr": 3, "f": 9.79, "im": 9.82, "in": 3}, {"c": "Ovaro", "s": "Kiinteistöt", "i": "Real Estate Management & Development", "m": 23.91, "w": 10.3, "br": 4, "vr": 2, "f": 10.72, "im": 8.29, "in": 6}, {"c": "Pallas Air", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 0.54, "w": 13.15, "br": 5, "vr": 4, "f": 12.41, "im": 9.68, "in": 27}, {"c": "Panostaja", "s": "Rahoitus", "i": "Investment", "m": 14.88, "w": 7.75, "br": 4, "vr": 3, "f": 10.82, "im": 9.19, "in": 5}, {"c": "Pihlajalinna", "s": "Terveydenhuolto", "i": "Health Care Providers", "m": 250.18, "w": 7.16, "br": 3, "vr": 2, "f": 9.32, "im": 7.16, "in": 1}, {"c": "Ponsse", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 663.6, "w": 9.3, "br": 3, "vr": 3, "f": 9.13, "im": 9.68, "in": 27}, {"c": "Posti Group", "s": "Teollisuus", "i": "Transport & Logistics", "m": 546.75, "w": 8.06, "br": 3, "vr": 2, "f": 9.17, "im": 8.52, "in": 4}, {"c": "Puuilo", "s": "Kulutustavarat ja -palvelut", "i": "Retailers", "m": 1495.47, "w": 8.18, "br": 2, "vr": 4, "f": 8.03, "im": 9.12, "in": 5}, {"c": "QPR Software", "s": "Teknologia", "i": "Software", "m": 10.4, "w": 10.2, "br": 4, "vr": 4, "f": 10.89, "im": 10.25, "in": 13}, {"c": "QT Group", "s": "Teknologia", "i": "Software", "m": 869.04, "w": 9.41, "br": 3, "vr": 3, "f": 9.07, "im": 10.25, "in": 13}, {"c": "Raisio", "s": "Kulutustavarat ja -palvelut", "i": "Food & Beverage", "m": 364.5, "w": 7.77, "br": 2, "vr": 2, "f": 8.3, "im": 8.03, "in": 7}, {"c": "Rapala", "s": "Kulutustavarat ja -palvelut", "i": "Personal Goods", "m": 65.91, "w": 9.27, "br": 3, "vr": 3, "f": 9.58, "im": 9.12, "in": 6}, {"c": "Raute", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 89.97, "w": 10.73, "br": 4, "vr": 3, "f": 10.46, "im": 9.68, "in": 27}, {"c": "Relais Group", "s": "Kulutustavarat ja -palvelut", "i": "Automobiles", "m": 255.2, "w": 7.77, "br": 3, "vr": 3, "f": 9.32, "im": 8.64, "in": 3}, {"c": "Remedy", "s": "Teknologia", "i": "Software", "m": 263.81, "w": 10.38, "br": 4, "vr": 3, "f": 10.25, "im": 10.25, "in": 13}, {"c": "Revenio Group", "s": "Terveydenhuolto", "i": "Medical Equipment & Services", "m": 465.58, "w": 9.01, "br": 3, "vr": 3, "f": 9.2, "im": 10.43, "in": 11}, {"c": "Robit", "s": "Energia", "i": "Drilling Equipment & Services", "m": 28.59, "w": 9.38, "br": 4, "vr": 3, "f": 10.69, "im": 9.38, "in": 1}, {"c": "SAAB", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 29555.77, "w": 7.57, "br": 2, "vr": 3, "f": 7.44, "im": 9.68, "in": 27}, {"c": "Sampo", "s": "Rahoitus", "i": "Financial Services", "m": 23557.58, "w": 6.92, "br": 1, "vr": 3, "f": 6.54, "im": 10.02, "in": 10}, {"c": "Sanoma", "s": "Kulutustavarat ja -palvelut", "i": "Media & Entertainment", "m": 1622.57, "w": 7.38, "br": 2, "vr": 3, "f": 8.01, "im": 8.53, "in": 5}, {"c": "Scanfil", "s": "Teknologia", "i": "Software", "m": 821.27, "w": 8.24, "br": 3, "vr": 3, "f": 9.09, "im": 10.25, "in": 13}, {"c": "Siili Solutions", "s": "Teknologia", "i": "Software", "m": 23.12, "w": 11.3, "br": 3, "vr": 3, "f": 9.79, "im": 10.25, "in": 13}, {"c": "Sitowise", "s": "Teollisuus", "i": "Construction & Materials", "m": 88.54, "w": 8.39, "br": 3, "vr": 2, "f": 9.52, "im": 8.99, "in": 9}, {"c": "Solar Foods", "s": "Kulutustavarat ja -palvelut", "i": "Food Producers", "m": 149.65, "w": 14.33, "br": 5, "vr": 4, "f": 11.3, "im": 14.33, "in": 1}, {"c": "Solteq", "s": "Teknologia", "i": "IT Services", "m": 5.82, "w": 10.99, "br": 5, "vr": 5, "f": 11.94, "im": 9.75, "in": 12}, {"c": "Solwers", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 12.71, "w": 9.68, "br": 4, "vr": 3, "f": 10.85, "im": 9.68, "in": 27}, {"c": "Sotkamo Silver", "s": "Perusteollisuus", "i": "Metals & Mining", "m": 147.34, "w": 11.81, "br": 5, "vr": 4, "f": 11.31, "im": 9.82, "in": 3}, {"c": "Spinnova", "s": "Kulutustavarat ja -palvelut", "i": "Personal Goods", "m": 25.61, "w": 15.05, "br": 5, "vr": 4, "f": 11.65, "im": 9.12, "in": 6}, {"c": "Spotify", "s": "Kulutustavarat ja -palvelut", "i": "Media & Entertainment", "m": 105044.07, "w": 8.53, "br": 2, "vr": 3, "f": 7.19, "im": 8.53, "in": 5}, {"c": "Springvest", "s": "Rahoitus", "i": "Financial Services", "m": 45.28, "w": 15.03, "br": 3, "vr": 4, "f": 9.66, "im": 10.02, "in": 10}, {"c": "SRV Yhtiot", "s": "Teollisuus", "i": "Construction & Materials", "m": 163.03, "w": 9.72, "br": 4, "vr": 2, "f": 10.35, "im": 8.99, "in": 9}, {"c": "SSH", "s": "Teknologia", "i": "IT Services", "m": 109.77, "w": 10.7, "br": 3, "vr": 4, "f": 9.48, "im": 9.75, "in": 12}, {"c": "Starbreeze", "s": "Teknologia", "i": "Software", "m": 15.26, "w": 13.11, "br": 4, "vr": 3, "f": 10.81, "im": 10.25, "in": 13}, {"c": "Stora Enso", "s": "Perusteollisuus", "i": "Paper & Forest Products", "m": 8288.4, "w": 8.42, "br": 4, "vr": 2, "f": 9.57, "im": 8.6, "in": 5}, {"c": "Sunborn International", "s": "Kulutustavarat ja -palvelut", "i": "Consumer Services", "m": 84.44, "w": 7.21, "br": 4, "vr": 5, "f": 10.47, "im": 7.45, "in": 5}, {"c": "Suominen", "s": "Kulutustavarat ja -palvelut", "i": "Personal Goods", "m": 82.58, "w": 8.56, "br": 3, "vr": 4, "f": 9.54, "im": 9.12, "in": 6}, {"c": "Taaleri", "s": "Rahoitus", "i": "Financial Services", "m": 205.27, "w": 10.04, "br": 3, "vr": 1, "f": 9.36, "im": 10.02, "in": 10}, {"c": "Talenom", "s": "Teknologia", "i": "IT Services", "m": 53.86, "w": 8.09, "br": 3, "vr": 3, "f": 9.62, "im": 9.75, "in": 12}, {"c": "Tamtron", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 31.54, "w": 9.24, "br": 3, "vr": 3, "f": 9.73, "im": 9.68, "in": 27}, {"c": "Tekova", "s": "Teollisuus", "i": "Construction & Materials", "m": 49.58, "w": 10.83, "br": 4, "vr": 3, "f": 10.58, "im": 8.99, "in": 9}, {"c": "Teleste", "s": "Teknologia", "i": "Telecommunications", "m": 65.88, "w": 8.83, "br": 3, "vr": 3, "f": 9.58, "im": 8.2, "in": 7}, {"c": "Telia", "s": "Teknologia", "i": "Telecommunications", "m": 16011.88, "w": 6.95, "br": 2, "vr": 3, "f": 7.56, "im": 8.2, "in": 7}, {"c": "Terveystalo", "s": "Terveydenhuolto", "i": "Medical Equipment & Services", "m": 965.48, "w": 7.81, "br": 2, "vr": 3, "f": 8.11, "im": 10.43, "in": 11}, {"c": "Titanium", "s": "Rahoitus", "i": "Financial Services", "m": 63.04, "w": 11.5, "br": 4, "vr": 3, "f": 10.53, "im": 10.02, "in": 10}, {"c": "Toivo Group", "s": "Kiinteistöt", "i": "Real Estate Management & Development", "m": 52.26, "w": 8.43, "br": 4, "vr": 3, "f": 10.57, "im": 8.29, "in": 6}, {"c": "Tokmanni", "s": "Kulutustavarat ja -palvelut", "i": "Retailers", "m": 410.02, "w": 9.12, "br": 3, "vr": 2, "f": 9.22, "im": 9.12, "in": 5}, {"c": "Tulikivi", "s": "Kulutustavarat ja -palvelut", "i": "Home Products", "m": 31.01, "w": 9.16, "br": 4, "vr": 4, "f": 10.67, "im": 9.01, "in": 5}, {"c": "United Bankers", "s": "Rahoitus", "i": "Financial Services", "m": 261.8, "w": 10.0, "br": 3, "vr": 4, "f": 9.31, "im": 10.02, "in": 10}, {"c": "UPM", "s": "Perusteollisuus", "i": "Paper & Forest Products", "m": 13510.03, "w": 8.6, "br": 3, "vr": 3, "f": 8.53, "im": 8.6, "in": 5}, {"c": "Vaisala", "s": "Teknologia", "i": "Hardware Manufacturer", "m": 2204.42, "w": 7.41, "br": 1, "vr": 3, "f": 7.01, "im": 9.05, "in": 2}, {"c": "Valmet", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 5290.46, "w": 8.96, "br": 4, "vr": 2, "f": 9.66, "im": 9.68, "in": 27}, {"c": "Verkkokauppa.com", "s": "Kulutustavarat ja -palvelut", "i": "Retailers", "m": 160.56, "w": 9.71, "br": 2, "vr": 3, "f": 8.46, "im": 9.12, "in": 5}, {"c": "Verve", "s": "Teknologia", "i": "Software", "m": 2467.44, "w": 12.07, "br": 4, "vr": 3, "f": 9.81, "im": 10.25, "in": 13}, {"c": "Viafin Services", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 71.12, "w": 9.1, "br": 2, "vr": 2, "f": 8.62, "im": 9.68, "in": 27}, {"c": "Vincit", "s": "Teknologia", "i": "Software", "m": 16.75, "w": 13.53, "br": 4, "vr": 3, "f": 10.79, "im": 10.25, "in": 13}, {"c": "Wartsila", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 17414.42, "w": 7.82, "br": 2, "vr": 4, "f": 7.54, "im": 9.68, "in": 27}, {"c": "Wetteri Oyj", "s": "Kulutustavarat ja -palvelut", "i": "Consumer Services", "m": 26.69, "w": 7.45, "br": 4, "vr": 4, "f": 10.7, "im": 7.45, "in": 5}, {"c": "Witted Megacorp Oyj", "s": "Teknologia", "i": "IT Services", "m": 24.2, "w": 11.11, "br": 4, "vr": 2, "f": 10.72, "im": 9.75, "in": 12}, {"c": "Wulff", "s": "Teollisuus", "i": "Industrial Goods & Services", "m": 30.81, "w": 9.57, "br": 3, "vr": 3, "f": 9.73, "im": 9.68, "in": 27}, {"c": "YIT", "s": "Teollisuus", "i": "Construction & Materials", "m": 1012.94, "w": 8.87, "br": 4, "vr": 3, "f": 9.99, "im": 8.99, "in": 9}], "sectors": ["Kiinteistöt", "Energia", "Kulutustavarat ja -palvelut", "Perusteollisuus", "Teollisuus", "Rahoitus", "Teknologia", "Terveydenhuolto"], "buckets": ["< 50", "50–250", "250–1 000", "> 1 000"], "heat": [[0, 0, 10.3, 3], [0, 1, 9.38, 1], [0, 2, 9.16, 9], [0, 4, 10.49, 15], [0, 5, 11.19, 4], [0, 6, 10.26, 13], [0, 7, 11.71, 6], [1, 0, 7.41, 2], [1, 2, 9.01, 13], [1, 3, 10.53, 2], [1, 4, 9.57, 16], [1, 5, 10.51, 6], [1, 6, 8.91, 9], [1, 7, 10.43, 5], [2, 0, 8.16, 1], [2, 2, 8.03, 7], [2, 3, 9.82, 1], [2, 4, 8.46, 7], [2, 5, 9.49, 6], [2, 6, 9.07, 5], [2, 7, 7.81, 3], [3, 1, 8.19, 3], [3, 2, 8.34, 8], [3, 3, 8.63, 6], [3, 4, 7.82, 9], [3, 5, 8.49, 3], [3, 6, 8.2, 7], [3, 7, 7.96, 1]], "bucketMed": [10.4, 9.48, 8.9, 8.2], "riskMed": {"1": 7.36, "2": 8.27, "3": 9.09, "4": 10.28, "5": 12.48}, "fit": {"a": 11.723054285159415, "b": -0.9489349671144681, "r2": 0.2800846030215963}, "multi": {"size": -0.45290429705539165, "risk": 0.9419865058634449, "r2": 0.47186498437369384, "r2sector": 0.3695100439612793}, "n": 171, "median": 9.24, "min": 6.4, "max": 15.47};
+const fmt = (v, d = 1) => v == null ? "–" : v.toLocaleString("fi-FI", { minimumFractionDigits: d, maximumFractionDigits: d });
+const pct = (v, d = 1) => fmt(v, d) + " %";
+const mcapFmt = v => v >= 1000 ? fmt(v / 1000, 1) + " mrd. €" : fmt(v, v < 10 ? 1 : 0) + " M€";
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const SECTORS = D.sectors;
+const sColor = s => css("--s" + (SECTORS.indexOf(s) + 1));
+let active = new Set(SECTORS);
+try { const saved = JSON.parse(localStorage.getItem("wacc-sectors")); if (Array.isArray(saved) && saved.length) active = new Set(saved.filter(s => SECTORS.includes(s))); } catch (e) {}
+const visible = () => D.rows.filter(r => active.has(r.s));
+// deterministic jitter so dots don't move on re-render
+const jit = (name, amp) => { let h = 0; for (const ch of name) h = (h * 31 + ch.charCodeAt(0)) | 0; return ((h % 1000) / 1000) * amp; };
+
+// ---- header copy -----------------------------------------------------------
+const M = D.multi, F = D.fit;
+document.getElementById("lede").textContent =
+  `${D.n} Inderesin seuraamaa yhtiötä. Tuottovaatimuksen (WACC) mediaani on ${pct(D.median)} ja vaihteluväli ${pct(D.min)}–${pct(D.max)}. ` +
+  `Eniten tuottovaatimusta selittää Inderesin arvioima liiketoimintariski ja seuraavaksi eniten yhtiön koko: yhdessä ne selittävät vaihtelusta ${fmt(M.r2 * 100, 0)} %, ` +
+  `koko ja sektori yhdessä ${fmt(M.r2sector * 100, 0)} %. Alle 50 M€:n yhtiöiden mediaani-WACC on ${pct(D.bucketMed[0])}, yli miljardin euron yhtiöiden ${pct(D.bucketMed[3])}.`;
+document.getElementById("h-size").textContent = `Koko: kymmenkertainen markkina-arvo laskee tuottovaatimusta noin ${fmt(-F.b, 1)} %-yksikköä`;
+const rm = D.riskMed;
+document.getElementById("h-risk").textContent = `Riski: liiketoimintariskin pisteet erottelevat, arvostusriskin eivät (mediaani ${pct(rm[1] ?? rm[2])} → ${pct(rm[5])})`;
+{
+  const g = {}; D.rows.forEach(r => { if (r.in >= 3) g[r.i] = r.im; });
+  const srt = Object.entries(g).sort((a, b) => a[1] - b[1]);
+  const lo = srt.slice(0, 2), hi = srt.slice(-2).reverse();
+  document.getElementById("h-ind").textContent = `Toimiala: korkeimmat mediaanit ${hi.map(([k, v]) => `${k} ${pct(v)}`).join(" ja ")}, matalimmat ${lo.map(([k, v]) => `${k} ${pct(v)}`).join(" ja ")}`;
+}
+document.getElementById("foot").textContent = `Sovitteet: WACC ~ log10(markkina-arvo), R² ${fmt(F.r2, 2)}; WACC ~ log10(markkina-arvo) + liiketoimintariski, R² ${fmt(M.r2, 2)}; WACC ~ log10(markkina-arvo) + sektori, R² ${fmt(M.r2sector, 2)}. n = ${D.n}.`;
+
+// ---- filter chips ----------------------------------------------------------
+const chipsEl = document.getElementById("chips");
+function drawChips() {
+  chipsEl.innerHTML = SECTORS.map(s => {
+    const n = D.rows.filter(r => r.s === s).length;
+    return `<button type="button" class="chip" aria-pressed="${active.has(s)}" data-s="${s}" style="--c:${sColor(s)}"><i></i>${s} <span style="color:var(--muted)">${n}</span></button>`;
+  }).join("");
+}
+chipsEl.addEventListener("click", e => {
+  const b = e.target.closest(".chip"); if (!b) return;
+  const s = b.dataset.s;
+  if (active.size === SECTORS.length) active = new Set([s]);        // first click isolates
+  else if (active.has(s)) { active.delete(s); if (!active.size) active = new Set(SECTORS); }
+  else active.add(s);
+  update();
+});
+document.getElementById("reset").onclick = () => { active = new Set(SECTORS); update(); };
+
+// ---- charts ----------------------------------------------------------------
+const charts = {};
+const el = id => document.getElementById(id);
+function base() {
+  const ink = css("--ink"), muted = css("--muted"), grid = css("--grid"), panel = css("--panel"), rule = css("--rule");
+  return {
+    ink, muted, grid, panel, rule,
+    text: { color: muted, fontFamily: css("--body"), fontSize: 12 },
+    tooltip: { backgroundColor: panel, borderColor: rule, textStyle: { color: ink, fontFamily: css("--body"), fontSize: 13 }, extraCssText: "box-shadow:0 4px 16px rgba(0,0,0,.12);border-radius:8px;" },
+    axisY: { type: "value", axisLabel: { formatter: v => fmt(v, 0) + " %", color: muted }, splitLine: { lineStyle: { color: grid } }, axisLine: { show: false }, axisTick: { show: false } },
+  };
+}
+const tipRow = r => `<b>${r.c}</b><br>${r.i}<br>WACC <b>${pct(r.w, 2)}</b> · ${mcapFmt(r.m)}<br>Liiketoim.riski ${r.br ?? "–"} · Arvostusriski ${r.vr ?? "–"}`;
+const dotStyle = (s, P) => ({ color: sColor(s), borderColor: P.panel, borderWidth: 1.5, opacity: .9 });
+
+function drawSize() {
+  const P = base(), rows = visible();
+  const xs = [0.4, 200000];
+  const series = SECTORS.filter(s => active.has(s)).map(s => ({
+    type: "scatter", name: s, symbolSize: 9, itemStyle: dotStyle(s, P),
+    data: rows.filter(r => r.s === s).map(r => ({ value: [r.m, r.w], r })),
+    emphasis: { scale: 1.6 },
+  }));
+  series.push({ type: "line", name: "Sovite", data: xs.map(x => [x, F.a + F.b * Math.log10(x)]), symbol: "none", silent: true,
+    lineStyle: { color: css("--accent"), width: 2, type: [6, 4] }, z: 1 });
+  charts.size.setOption({
+    textStyle: P.text, animationDuration: 300,
+    grid: { left: 52, right: 20, top: 16, bottom: 44 },
+    tooltip: { ...P.tooltip, trigger: "item", formatter: p => p.data.r ? tipRow(p.data.r) : "" },
+    xAxis: { type: "log", logBase: 10, min: 0.4, max: 200000, name: "Markkina-arvo, M€ (log)", nameLocation: "middle", nameGap: 28, nameTextStyle: { color: P.muted },
+      axisLabel: { color: P.muted, showMaxLabel: false, formatter: v => v >= 1000 ? fmt(v / 1000, 0) + " mrd." : fmt(v, v < 1 ? 1 : 0) }, splitLine: { lineStyle: { color: P.grid } }, axisLine: { lineStyle: { color: P.rule } } },
+    yAxis: { ...P.axisY, min: 6, max: 16 },
+    series,
+  }, true);
+}
+
+function drawRisk(key, chart, title) {
+  const P = base(), rows = visible().filter(r => r[key] != null);
+  const series = SECTORS.filter(s => active.has(s)).map(s => ({
+    type: "scatter", name: s, symbolSize: 7, itemStyle: dotStyle(s, P),
+    data: rows.filter(r => r.s === s).map(r => ({ value: [r[key] - 0.22 + jit(r.c, 0.44), r.w], r })),
+  }));
+  const med = [1, 2, 3, 4, 5].map(k => {
+    const v = rows.filter(r => r[key] === k).map(r => r.w).sort((a, b) => a - b);
+    if (!v.length) return null;
+    const m = v.length % 2 ? v[(v.length - 1) / 2] : (v[v.length / 2 - 1] + v[v.length / 2]) / 2;
+    return { value: [k, m], n: v.length };
+  }).filter(Boolean);
+  series.push({ type: "scatter", name: "Mediaani", symbol: "rect", symbolSize: [46, 3], z: 5,
+    itemStyle: { color: css("--ink") }, data: med,
+    label: { show: true, position: "top", distance: 4, color: P.ink, fontFamily: css("--mono"), fontSize: 11, formatter: p => pct(p.value[1]) } });
+  chart.setOption({
+    textStyle: P.text, animationDuration: 300,
+    title: { text: title, left: 8, top: 4, textStyle: { color: P.ink, fontFamily: css("--body"), fontWeight: 600, fontSize: 14 } },
+    grid: { left: 48, right: 16, top: 44, bottom: 40 },
+    tooltip: { ...P.tooltip, trigger: "item", formatter: p => p.data.r ? tipRow(p.data.r) : `Mediaani ${pct(p.value[1], 2)} (n = ${p.data.n})` },
+    xAxis: { type: "value", min: 0.5, max: 5.5, interval: 1, name: "Pisteet (1 = matala, 5 = korkea)", nameLocation: "middle", nameGap: 26, nameTextStyle: { color: P.muted },
+      axisLabel: { color: P.muted, formatter: v => Number.isInteger(v) ? String(v) : "" }, splitLine: { show: false }, axisLine: { lineStyle: { color: P.rule } }, axisTick: { show: false } },
+    yAxis: { ...P.axisY, min: 6, max: 16 },
+    series,
+  }, true);
+}
+
+function drawIndustry() {
+  const P = base(), rows = visible();
+  const byInd = {};
+  rows.forEach(r => (byInd[r.i] ??= []).push(r));
+  const inds = Object.keys(byInd).sort((a, b) => byInd[a][0].im - byInd[b][0].im || a.localeCompare(b));
+  const idx = Object.fromEntries(inds.map((k, i) => [k, i]));
+  el("c-ind").style.height = Math.max(260, inds.length * 26 + 70) + "px";
+  charts.ind.resize();
+  const series = SECTORS.filter(s => active.has(s)).map(s => ({
+    type: "scatter", name: s, symbolSize: 8, itemStyle: dotStyle(s, P),
+    data: rows.filter(r => r.s === s).map(r => ({ value: [r.w, idx[r.i] - 0.18 + jit(r.c, 0.36)], r })),
+  }));
+  series.push({ type: "scatter", name: "Mediaani", symbol: "rect", symbolSize: [2.5, 20], z: 5, itemStyle: { color: css("--ink") },
+    data: inds.map(k => ({ value: [byInd[k][0].im, idx[k]], k, n: byInd[k][0].in })) });
+  charts.ind.setOption({
+    textStyle: P.text, animationDuration: 300,
+    grid: { left: 8, right: 20, top: 12, bottom: 40, containLabel: true },
+    tooltip: { ...P.tooltip, trigger: "item", formatter: p => p.data.r ? tipRow(p.data.r) : `<b>${p.data.k}</b><br>Mediaani ${pct(p.value[0], 2)} (n = ${p.data.n})` },
+    xAxis: { ...P.axisY, min: 6, max: 16, position: "bottom" },
+    yAxis: { type: "value", inverse: true, min: -1, max: inds.length, interval: 1, splitLine: { show: false }, axisLine: { show: false }, axisTick: { show: false },
+      axisLabel: { color: P.ink, fontSize: 12, formatter: v => Number.isInteger(v) && inds[v] ? `${inds[v]} (${byInd[inds[v]][0].in})` : "" } },
+    series,
+  }, true);
+}
+
+function drawHeat() {
+  const P = base();
+  const vals = D.heat.map(h => h[2]);
+  const lo = Math.min(...vals), hi = Math.max(...vals);
+  const ramp = ["--q1", "--q2", "--q3", "--q4", "--q5", "--q6"].map(css);
+  const darkText = document.documentElement.matches(':root[data-theme="dark"]') || (matchMedia("(prefers-color-scheme: dark)").matches && !document.documentElement.matches('[data-theme="light"]'));
+  charts.heat.setOption({
+    textStyle: P.text, animation: false,
+    grid: { left: 8, right: 16, top: 8, bottom: 56, containLabel: true },
+    tooltip: { ...P.tooltip, formatter: p => `<b>${D.sectors[p.value[1]]}</b>, ${D.buckets[p.value[0]]} M€<br>Mediaani ${pct(p.value[2], 2)} · n = ${p.value[3]}` },
+    xAxis: { type: "category", data: D.buckets, name: "Markkina-arvo, M€", nameLocation: "middle", nameGap: 30, nameTextStyle: { color: P.muted }, axisLabel: { color: P.muted }, axisLine: { show: false }, axisTick: { show: false }, splitArea: { show: false } },
+    yAxis: { type: "category", data: D.sectors, axisLabel: { color: P.ink }, axisLine: { show: false }, axisTick: { show: false } },
+    visualMap: { show: false, min: lo, max: hi, dimension: 2, inRange: { color: ramp } },
+    series: [{ type: "heatmap", itemStyle: { borderColor: P.panel, borderWidth: 2, borderRadius: 4 },
+      data: D.heat.map(h => {
+        const t = (h[2] - lo) / (hi - lo || 1);
+        const strong = darkText ? t < 0.5 : t > 0.5;
+        return { value: h, label: { show: true, color: strong ? "#ffffff" : "#15152b", fontFamily: css("--mono"), fontSize: 12, lineHeight: 15,
+          formatter: `${fmt(h[2], 1)} %\n{n|n = ${h[3]}}`, rich: { n: { fontSize: 10, color: strong ? "rgba(255,255,255,.8)" : "rgba(21,21,43,.7)" } } } };
+      }) }],
+  }, true);
+}
+
+// ---- table -----------------------------------------------------------------
+let sortK = "d", sortDir = -1;
+const tbody = document.querySelector("#tbl tbody");
+function drawTable() {
+  const q = el("q").value.trim().toLowerCase();
+  const rows = visible().map(r => ({ ...r, d: r.f == null ? null : +(r.w - r.f).toFixed(2) }))
+    .filter(r => !q || r.c.toLowerCase().includes(q) || r.i.toLowerCase().includes(q));
+  const key = sortK;
+  rows.sort((a, b) => {
+    let x = a[key], y = b[key];
+    if (key === "d") { x = x == null ? null : Math.abs(x); y = y == null ? null : Math.abs(y); }
+    if (x == null) return 1; if (y == null) return -1;
+    return (typeof x === "string" ? x.localeCompare(y, "fi") : x - y) * sortDir;
+  });
+  tbody.innerHTML = rows.map(r => `<tr>
+    <td><span class="dot" style="background:${sColor(r.s)}"></span>${r.c}</td><td>${r.i}</td>
+    <td class="n">${fmt(r.m, r.m < 10 ? 1 : 0)}</td><td class="n"><b>${pct(r.w, 2)}</b></td>
+    <td class="n">${pct(r.im, 2)} <span style="color:var(--muted)">(${r.in})</span></td>
+    <td class="n">${r.br ?? "–"}</td><td class="n">${r.vr ?? "–"}</td><td class="n">${r.f == null ? "–" : pct(r.f, 2)}</td>
+    <td class="n ${r.d > 0.5 ? "up" : r.d < -0.5 ? "down" : ""}">${r.d == null ? "–" : (r.d > 0 ? "+" : r.d < 0 ? "−" : "") + fmt(Math.abs(r.d), 2)}</td></tr>`).join("");
+  el("tcount").textContent = `${rows.length} yhtiötä · oletusjärjestys: suurin poikkeama ensin`;
+  document.querySelectorAll("#tbl th").forEach(th => th.setAttribute("aria-sort", th.dataset.k === sortK ? (sortDir > 0 ? "ascending" : "descending") : "none"));
+}
+document.querySelectorAll("#tbl th").forEach(th => {
+  th.tabIndex = 0;
+  const go = () => { if (sortK === th.dataset.k) sortDir *= -1; else { sortK = th.dataset.k; sortDir = ["c", "i"].includes(sortK) ? 1 : -1; } drawTable(); };
+  th.onclick = go; th.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } };
+});
+el("q").addEventListener("input", drawTable);
+
+// ---- lifecycle -------------------------------------------------------------
+function update() {
+  try { localStorage.setItem("wacc-sectors", JSON.stringify([...active])); } catch (e) {}
+  drawChips(); drawSize(); drawRisk("br", charts.br, "Liiketoimintariski"); drawRisk("vr", charts.vr, "Arvostusriski"); drawIndustry(); drawTable();
+}
+function renderAll() { drawHeat(); update(); }
+function init() {
+  for (const [k, id] of [["size", "c-size"], ["br", "c-br"], ["vr", "c-vr"], ["ind", "c-ind"], ["heat", "c-heat"]])
+    charts[k] = echarts.init(el(id), null, { renderer: "svg" });
+  renderAll();
+  addEventListener("resize", () => Object.values(charts).forEach(c => c.resize()));
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", renderAll);
+  new MutationObserver(renderAll).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+}
+if (window.echarts) init(); else addEventListener("load", init);
+</script>
